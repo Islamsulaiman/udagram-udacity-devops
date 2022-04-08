@@ -12,7 +12,6 @@
     "importHelpers": true,
     "target": "es5",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "typeRoots": [
       "node_modules/@types"
     ],
