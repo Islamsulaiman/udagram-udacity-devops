@@ -24,8 +24,8 @@ jobs:
       # this line to setup aws cli because we need it for deploying to S3 or elasticbeanstalk
       - aws-cli/setup
       # setup EB cli using its info at the orbs step
-      -aws-elastic-beanstalk/setup
-      
+      - aws-elastic-beanstalk/setup
+
       # install dependencies in both apps
       - run:
           name: Front-End Install
@@ -48,4 +48,4 @@ jobs:
           command: |
             npm run frontend:deploy
 
-## Workflow step, to manage and order or process 
+## Workflow step, to manage and order or process
