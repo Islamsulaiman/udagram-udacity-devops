@@ -15,7 +15,7 @@ jobs:
   build:
     docker:
       # the base  image can run most needed actions with orbs
-      - image: "cimg/node:12.16"
+      - image: cimg/node:16.13.1
     steps:
       ## inside steps, first we want to instal the software that we specefide at the "orbs" step, by typing "<software_orb_key>/install" this will substitute the key with the value which is the software version and install it.
       - node/install
