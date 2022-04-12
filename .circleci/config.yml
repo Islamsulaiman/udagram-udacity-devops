@@ -50,3 +50,12 @@ jobs:
             npm run frontend:deploy
 
 ## Workflow step, to manage and order or process
+#this workflow to build when the master branch only changes
+workflows:
+  build-and-test:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
