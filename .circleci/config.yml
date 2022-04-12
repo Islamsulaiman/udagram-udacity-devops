@@ -5,7 +5,8 @@ version: 2.1
 orbs:
   ## In orbs we just  specify a key value pair, the key is the name of software that we will install later and the value is the software version
   # orbs contain basic recipes and reproducible actions (install node, aws, etc.)
-  node: circleci/node@4.7.0
+  # use this specific version of node to work with angular
+  node: circleci/node@5.0.1
   # different jobs are calles later in the workflows sections
   aws-cli: circleci/aws-cli@1.3.1
   # Add EB cli version and info to be setup later at steps.
@@ -15,7 +16,7 @@ jobs:
   build:
     docker:
       # the base  image can run most needed actions with orbs
-      - image: cimg/node:16.13.1
+      - image: "cimg/base:stable"
     steps:
       ## inside steps, first we want to instal the software that we specefide at the "orbs" step, by typing "<software_orb_key>/install" this will substitute the key with the value which is the software version and install it.
       - node/install
