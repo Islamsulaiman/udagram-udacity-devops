@@ -9,8 +9,8 @@ export const environment = {
   production: false,
   appName: 'Udagram',
   // apiHost : process.env.BACKEND_URL
-  // apiHost: 'http://udagram-api-dev22222.us-east-1.elasticbeanstalk.com'
-  apiHost : 'http://localhost:3000/api/v0'
+  apiHost: "http://udagram-api-dev.eba-e6ehqvq2.us-east-1.elasticbeanstalk.com/api/v0"
+  // apiHost : 'http://localhost:3000/api/v0'
 };
 
 /*
