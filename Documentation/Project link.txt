@@ -1,0 +1,7 @@
+http://udagram-123bucket.s3-website-us-east-1.amazonaws.com
+
+How to run the project?
+1. access the link above (http://udagram-123bucket.s3-website-us-east-1.amazonaws.com)
+2. tap on register.
+3. create new user, add a valid email like "xyz@yahoo.com"
+4. add a password and repeat it.

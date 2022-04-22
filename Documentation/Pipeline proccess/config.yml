@@ -1,0 +1,61 @@
+# this file is the rules for cercleci
+version: 2.1
+
+# orbs contain any environments setup
+orbs:
+  ## In orbs we just  specify a key value pair, the key is the name of software that we will install later and the value is the software version
+  # orbs contain basic recipes and reproducible actions (install node, aws, etc.)
+  # use this specific version of node to work with angular
+  node: circleci/node@5.0.1
+  # different jobs are calles later in the workflows sections
+  aws-cli: circleci/aws-cli@1.3.1
+  # Add EB cli version and info to be setup later at steps.
+  aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
+
+jobs:
+  build:
+    docker:
+      # the base  image can run most needed actions with orbs
+      - image: "cimg/base:stable"
+    steps:
+      ## inside steps, first we want to instal the software that we specefide at the "orbs" step, by typing "<software_orb_key>/install" this will substitute the key with the value which is the software version and install it.
+      - node/install
+      - node/install-yarn
+      - checkout
+      # this line to setup aws cli because we need it for deploying to S3 or elasticbeanstalk
+      - aws-cli/setup
+      # setup EB cli using its info at the orbs step
+      - aws-elastic-beanstalk/setup
+
+      # install dependencies in both apps
+      - run:
+          name: Front-End Install
+          command: |
+            npm run frontend:install
+      - run:
+          name: backend install
+          command: |
+            npm run backend:install
+      - run:
+          name: frontend build
+          command: |
+            npm run frontend:build
+      - run:
+          name: Backend build
+          command: |
+            npm run backend:build
+      - run:
+          name: frontend-deploy
+          command: |
+            npm run frontend:deploy
+
+## Workflow step, to manage and order or process
+#this workflow to build when the master branch only changes
+workflows:
+  build-and-test:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
